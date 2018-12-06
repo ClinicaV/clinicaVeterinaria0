@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
+<TITLE>Agregar Tratamiento</TITLE>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -18,10 +19,10 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <div class="col-8">
+                <div class="form-group col-md-5">
                     <form action="tratamientos?action=insertar" method="POST">
                         <label>Tratamiento</label>
-                        <input class="form-control col-3" name="tratamiento" required=""><br/>
+                        <input class="form-control " name="tratamiento" required=""><br/>
                         <label>Servicio</label><br/>
                         <div class="input-group">
                                     <input type="hidden" name="idCatTratamiento" id="idCatTratamiento">
@@ -31,13 +32,12 @@
                                     </span>
                         </div><!-- /input-group -->
                         <label>Precio</label>
-                        <input class="form-control col-3" name="precio" required=""><br/>
+                        <input class="form-control " name="precio" required=""><br/>
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
-                    <form action="tratamientos?action=mostrar" method="POST">
-                        <button class="btn btn-success col-6" name="estado" value="habilitado">Mostrar Registros</button>
-                    </form>
+                    <a class="btn btn-success" href="tratamientos?action=mostrar&estado=habilitado">Mostrar Registros</a>
+                
                 </div>               
             </div>
         </div>

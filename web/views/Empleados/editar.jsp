@@ -6,11 +6,12 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Editar Empleado</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
 
-            <small>Editar</small>
+            <small>Editar Empleado</small>
         </h1>
     </section>
     <!-- Main content -->

@@ -8,6 +8,7 @@ public class PersonasBean {
     private String telefono;
     private String genero;
     private int estadoPersona;
+    private int tipo;
 
     public PersonasBean(int idPersona) {
         this.idPersona = idPersona;
@@ -61,4 +62,13 @@ public class PersonasBean {
         this.estadoPersona = estadoPersona;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    
 }

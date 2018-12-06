@@ -67,7 +67,7 @@ public class InventarioServlet extends HttpServlet {
 
     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int prod = Integer.parseInt(request.getParameter("producto"));
+        int prod = Integer.parseInt(request.getParameter("idProducto"));
         double cantidad = Double.parseDouble(request.getParameter("cantidad"));
         double cunitario = Double.parseDouble(request.getParameter("costoUnitario"));
         double ctotal = cantidad*cunitario;

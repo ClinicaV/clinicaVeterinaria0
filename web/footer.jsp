@@ -50,6 +50,25 @@
             }
         }
     });
+    
+    $("#cat2").DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+    
     $('.sidebar-menu').tree();
 
     $(document).on("click", ".btn-check", function () {
@@ -74,6 +93,38 @@
         $("#idCatTratamiento").val(infoservicio[0]);
         $("#catTratamiento").val(infoservicio[1]);
         $("#modal-servicio").modal("hide");
+    })
+    
+    $(document).on("click", ".btn-servicio2", function () {
+        servicio2 = $(this).val();
+        infoservicio2 = servicio2.split("*");
+        $("#idCatTratamiento").val(infoservicio2[0]);
+        $("#catTratamiento").val(infoservicio2[1]);
+        $("#modal-servicio2").modal("hide");
+    })
+    
+    $(document).on("click", ".btn-producto", function () {
+        producto = $(this).val();
+        infoproducto = producto.split("*");
+        $("#idProducto").val(infoproducto[0]);
+        $("#producto").val(infoproducto[1]);
+        $("#modal-producto").modal("hide");
+    })
+    
+    $(document).on("click", ".btn-catproducto", function () {
+        catproducto = $(this).val();
+        infocatproducto = catproducto.split("*");
+        $("#idCatProducto").val(infocatproducto[0]);
+        $("#categoriaProducto").val(infocatproducto[1]);
+        $("#modal-catproducto").modal("hide");
+    })
+    
+    $(document).on("click", ".btn-unidad", function () {
+        unidad = $(this).val();
+        infounidad = unidad.split("*");
+        $("#idUnidadMedicion").val(infounidad[0]);
+        $("#unidadMedicion").val(infounidad[1]);
+        $("#modal-unidad").modal("hide");
     })
 </script>
 </body>

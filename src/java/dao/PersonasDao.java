@@ -16,7 +16,7 @@ public class PersonasDao {
 
     public boolean insertar(PersonasBean pbean) {
 
-        String sql = "insert into personas values (?,?,?,?,?,?)";
+        String sql = "insert into personas values (?,?,?,?,?,?,?)";
         try {
 
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
@@ -26,6 +26,7 @@ public class PersonasDao {
             ps.setString(4, pbean.getTelefono());
             ps.setString(5, pbean.getGenero());
             ps.setInt(6, pbean.getEstadoPersona());
+            ps.setInt(7, pbean.getTipo());
             ps.executeUpdate();
             return true;
 
@@ -39,7 +40,7 @@ public class PersonasDao {
     public List<PersonasBean> mostrar(String estado) {
         String sql;
         if (estado.equals("habilitado")) {
-            sql = "select * from personas where estadoPersona = 1";
+            sql = "select * from personas where estadoPersona = 1 and tipo = 0";
             try {
                 PreparedStatement ps = conn.conectar().prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -60,7 +61,7 @@ public class PersonasDao {
             }
 
         } else {
-            sql = "select * from personas where estadoPersona = 0";
+            sql = "select * from personas where estadoPersona = 0 and tipo = 0";
             try {
                 PreparedStatement ps = conn.conectar().prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();

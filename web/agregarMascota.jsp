@@ -141,7 +141,7 @@
                 <h4 class="modal-title">Lista de Razas</h4>
             </div>
             <div class="modal-body">
-                <table id="cat1" class="table table-bordered table-striped table-hover">
+                <table id="cat2" class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>

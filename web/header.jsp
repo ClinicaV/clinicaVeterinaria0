@@ -113,7 +113,7 @@
                                 <li><a href="productos?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Productos</a></li>
                                 <li><a href="comprobantes?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Comprobantes</a></li>
                                 <li><a href="unidades?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Unidades de Medicion</a></li>
-                                <li><a href="inventario?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Inventario</a></li>
+                                <li><a href="inventario?action=mostrar"><i class="fa fa-circle-o"></i>Inventario</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -137,8 +137,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
-                                <li><a href="usuarios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                             </ul>
                         </li>
                     </ul>

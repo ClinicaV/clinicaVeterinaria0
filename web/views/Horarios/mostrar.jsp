@@ -6,6 +6,7 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Registros Horarios</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -20,7 +21,7 @@
             <div class="box-body">
                     <br/>
                     <a class="btn btn-primary" href="horarios?action=listarServicios&estado=habilitado">Nuevo registro</a>
-                    <br>
+                    <br/><br/>
                     <table id="cat1" class="table table-striped table-bordered">
                         <thead class="alert-info">
                         <th>ID</th>
@@ -36,7 +37,7 @@
                                     <td>${ver.horaInicio}</td>
                                     <td>${ver.horaFin}</td>
                                     <td>${ver.catTratamiento}</td>
-                                    <td><a class="btn btn-outline-warning" href="horarios?action=buscarId&id=${ver.idHorario}&estado=habilitado"</a>Editar</td>
+                                    <td><a class="btn btn-warning" href="horarios?action=buscarId&id=${ver.idHorario}&estado=habilitado"</a>Editar</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

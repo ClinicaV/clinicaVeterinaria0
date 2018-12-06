@@ -6,10 +6,11 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Editar Tratamiento</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            <small>Editar</small>
+            <small>Editar Tratamiento</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -25,7 +26,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>ID:</label>
-                                        <input class="form-control col-3" name="id" readonly="" value="${list.idTratamiento}">
+                                        <input class="form-control " name="id" readonly="" value="${list.idTratamiento}">
                                     </div>
                                 </div>
                             </div>
@@ -35,13 +36,13 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Tratamiento</label>
-                                        <input class="form-control col-3" name="tratamiento" required="" value="${list.tratamiento}">
+                                        <input class="form-control " name="tratamiento" required="" value="${list.tratamiento}">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <select class="form-control" name="idCatTratamiento">
                                             <c:forEach items="${registros}" var="ver">

@@ -69,12 +69,12 @@ public class ProductosServlet extends HttpServlet {
         request.getRequestDispatcher("views/Productos/mostrar.jsp").forward(request, response);
     }
 
-    protected void insertar(HttpServletRequest request, HttpServletResponse response)
+     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String producto = request.getParameter("producto");
-        int categoria = Integer.parseInt(request.getParameter("categoria"));
-        int unidad = Integer.parseInt(request.getParameter("unidad"));
+        int categoria = Integer.parseInt(request.getParameter("idCatProducto"));
+        int unidad = Integer.parseInt(request.getParameter("idUnidadMedicion"));
         double stock = Double.parseDouble(request.getParameter("stock"));
         Conexion conn = new Conexion();
         ProductosDao pdao = new ProductosDao(conn);

@@ -96,10 +96,7 @@ public class UsuariosServlet extends HttpServlet {
         String estado = "habilitado";
         PersonasDao pdao = new PersonasDao(conn);
         NivelesDao ndao = new NivelesDao(conn);
-        List<PersonasBean> registrosEmp = pdao.mostrar(estado);
-        List<NivelesBean> registrosNiv = ndao.mostrar(estado);
-        request.setAttribute("registrosEmp", registrosEmp);
-        request.setAttribute("registrosNiv", registrosNiv);
+        
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher("agregarUsuarios.jsp").forward(request, response);
     }
