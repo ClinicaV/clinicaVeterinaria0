@@ -26,7 +26,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Codigo</label>
-                                        <input class="form-control col-3" name="codEmpleado" readonly="" value="${list.codEmpleado}">
+                                        <input class="form-control col-3" name="idUsuario" readonly="" value="${list.idUsuario}">
                                     </div>
                                 </div>
                             </div>

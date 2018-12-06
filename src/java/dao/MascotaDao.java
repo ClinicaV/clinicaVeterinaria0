@@ -92,10 +92,48 @@ public class MascotaDao {
     }
 
     public List<MascotaBean> buscarId(int id) {
-        return null;
+
+            sql = "SELECT m.idMascota as Id, r.idRaza, m.nombreMascota as Mascota, m.sexo as sexo, p.idPersona, m.edad as Edad, m.identificacionTatoo as Tatoo, m.alergias as Alergia FROM mascotas m INNER JOIN razas r ON r.idRaza = m.idRaza INNER JOIN personas p ON p.idPersona = m.idPersona where m.idMascota = ?";
+            try {
+                PreparedStatement ps = conn.conectar().prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                List<MascotaBean> registros = new ArrayList<>();
+                MascotaBean mascotab;
+                while (rs.next()) {
+                    mascotab = new MascotaBean(rs.getInt("Id"));
+                    mascotab.setIdRaza(rs.getInt("idRaza"));
+                    mascotab.setNombreMascota(rs.getString("Mascota"));
+                    mascotab.setSexo(rs.getString("sexo"));
+                    mascotab.setIdPersona(rs.getInt("idPersona"));
+                    mascotab.setEdad(rs.getInt("Edad"));
+                    mascotab.setIdentificacionTatoo(rs.getString("Tatoo"));
+                    mascotab.setAlergias(rs.getString("Alergia"));
+                    registros.add(mascotab);
+                }
+                return registros;
+            } catch (Exception e) {
+                return null;
+            }
     }
 
     public boolean actualizar(MascotaBean mascotab) {
-        return true;
+        sql = "UPDATE  mascotas SET idRaza=?, nombreMascota=?, sexo=?, idPersona=?, edad=?, identificacionTatoo=?, alergias=? where idMascota=?";
+        try {
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            
+            ps.setInt(1, mascotab.getIdRaza());
+            ps.setString(2, mascotab.getNombreMascota());
+            ps.setString(3, mascotab.getSexo());
+            ps.setInt(4, mascotab.getIdPersona());
+            ps.setInt(5, mascotab.getEdad());
+            ps.setString(6, mascotab.getIdentificacionTatoo());
+            ps.setString(7, mascotab.getAlergias());
+            ps.setInt(8, mascotab.getIdMascota());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

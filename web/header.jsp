@@ -13,6 +13,9 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+        
         <link rel="stylesheet" href="libs/assets/template/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="libs/assets/template/jquery-ui/jquery-ui.css">
         <!-- Font Awesome -->
@@ -82,6 +85,24 @@
                                 <i class="fa fa-home"></i> <span>Inicio</span>
                             </a>
                         </li>
+                        
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fas fa-gears"></i> <span> Mantenimieto Clinica</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="servicios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Servicios</a></li>
+                                <li><a href="consultorios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Consultorios</a></li>
+                                <li><a href="catanimales?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Categorias Animales</a></li>
+                                <li><a href="razas?action=mostrar"><i class="fa fa-circle-o"></i>Razas Animales</a></li>
+                                <li><a href="horarios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Horarios</a></li>
+                                <li><a href="tratamientos?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Tratamientos</a></li>
+                            </ul>
+                        </li>
+                        
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-paw"></i> <span>Mascotas</span>
@@ -92,17 +113,11 @@
                             <ul class="treeview-menu">
                                 <li><a href="personas?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Clientes</a></li>
                                 <li><a href="mascota?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Mascotas</a></li>
-                                <li><a href="servicios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Servicios</a></li>
-                                <li><a href="consultorios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Consultorios</a></li>
-                                <li><a href="catanimales?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Categorias Animales</a></li>
-                                <li><a href="razas?action=mostrar"><i class="fa fa-circle-o"></i>Razas Animales</a></li>
-                                <li><a href="horarios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Horarios</a></li>
-                                <li><a href="tratamientos?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i>Tratamientos</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-list-ol"></i> <span>Inventario</span>
+                                <i class="fas fa-clipboard-list"></i> <span>Inventario</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -138,9 +153,9 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                                <li><a href="usuarios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                             </ul>
-                        </li>
+                        </li>usuarios
                     </ul>
                 </section>
                 <!-- /.sidebar -->

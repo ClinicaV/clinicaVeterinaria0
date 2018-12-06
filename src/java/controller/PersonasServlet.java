@@ -92,7 +92,6 @@ public class PersonasServlet extends HttpServlet {
         pbean.setTelefono(telefono);
         pbean.setGenero(genero);
         pbean.setEstadoPersona(estado);
-        pbean.setTipo(0);
         boolean respuesta = pdao.insertar(pbean);
         String mensaje;
         if (respuesta) {

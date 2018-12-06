@@ -18,9 +18,7 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <div class="row">
-                    <img src="libs/img/clinica-veterinaria-perros-gatos.png" width="800" height="500"/>
-                </div>
+                <img class="center-block" src="libs/img/cv.jpg"/>
             </div>
         </div>
         <!-- /.box-body -->

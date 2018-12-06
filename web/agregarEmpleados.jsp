@@ -6,7 +6,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
-<title>Agregar Empleados</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -19,34 +18,35 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <div class="form-group col-md-5">
+                <div class="col-8">
                     <form action="empleados?action=insertar" method="POST">
                         <label>Nombres</label>
-                        <input class="form-control" name="nombres" required="">
+                        <input class="form-control col-3" name="nombres" required="">
                         <label>Apellidos</label>
-                        <input class="form-control" name="apellidos" required="">
+                        <input class="form-control col-3" name="apellidos" required="">
                         <label>Telefono</label>
-                        <input class="form-control" name="telefono" required="">
+                        <input class="form-control col-3" name="telefono" required="">
                         <label>Genero</label><br/>
-                        <select class="form-control" name="genero">
+                        <select class="custom-select col-3" name="genero">
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                         </select><br/>
                         <label>NIT</label>
-                        <input class="form-control " name="nit" required="">
+                        <input class="form-control col-3" name="nit" required="">
                         <label>DUI</label>
-                        <input class="form-control" name="dui" required=""><br/>
+                        <input class="form-control col-3" name="dui" required=""><br/>
                         <label>Rol</label>
-                        <select class="form-control" name="idRol">
+                        <select class="custom-select col-3" name="idRol">
                             <c:forEach items="${registros}" var="list">
                                 <option value="${list.idRol}">${list.rol}</option>
                             </c:forEach>
-                        </select><br/>
+                        </select>
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
-                    <a class=" btn btn-success" href="empleados?action=mostrar&estado">Mostrar Registros</a>
-                   
+                    <form action="empleados?action=mostrar" method="POST">
+                        <button class="btn btn-success col-6" name="estado" value="habilitado">Mostrar Registros</button>
+                    </form>
                 </div>               
             </div>
         </div>

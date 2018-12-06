@@ -1,6 +1,5 @@
 package controller;
 
-import dao.PersonasDao;
 import dao.Conexion;
 import dao.EmpleadosDao;
 import dao.NivelesDao;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.EmpleadosBean;
-import model.PersonasBean;
 import model.UsuariosBean;
 import model.NivelesBean;
 
@@ -80,8 +78,8 @@ public class UsuariosServlet extends HttpServlet {
         int est = 1;
         Conexion conn = new Conexion();
         UsuariosDao udao = new UsuariosDao(conn);
-        UsuariosBean ubean = new UsuariosBean(usuario);
-        //ubean.setUsuario(usuario);
+        UsuariosBean ubean = new UsuariosBean(0);
+        ubean.setUsuario(usuario);
         ubean.setPassword(password);
         ubean.setIdNivel(nivel);
         ubean.setCodEmpleado(empleado);
@@ -94,24 +92,27 @@ public class UsuariosServlet extends HttpServlet {
             mensaje = "Error al guardar registro";
         }
         String estado = "habilitado";
-        PersonasDao pdao = new PersonasDao(conn);
+        EmpleadosDao edao = new EmpleadosDao(conn);
         NivelesDao ndao = new NivelesDao(conn);
-        
+        List<EmpleadosBean> registrosEmp = edao.mostrar();
+        List<NivelesBean> registrosNiv = ndao.mostrar(estado);
+        request.setAttribute("registrosEmp", registrosEmp);
+        request.setAttribute("registrosNiv", registrosNiv);
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher("agregarUsuarios.jsp").forward(request, response);
     }
 
     protected void buscarId(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usu = request.getParameter("usuario");
+        int usu = Integer.parseInt(request.getParameter("idUsuario"));
         String estado = request.getParameter("estado");
         Conexion conn = new Conexion();
         UsuariosDao udao = new UsuariosDao(conn);
         List<UsuariosBean> listar = udao.buscarId(usu);
         
-        PersonasDao pdao = new PersonasDao(conn);
+        EmpleadosDao edao = new EmpleadosDao(conn);
         NivelesDao ndao = new NivelesDao(conn);
-        List<PersonasBean> registrosEmp = pdao.mostrar(estado);
+        List<EmpleadosBean> registrosEmp = edao.mostrar();
         List<NivelesBean> registrosNiv = ndao.mostrar(estado);
         request.setAttribute("registrosEmp", registrosEmp);
         request.setAttribute("registrosNiv", registrosNiv);
@@ -121,7 +122,7 @@ public class UsuariosServlet extends HttpServlet {
 
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usu = request.getParameter("usuario");
+        int usu = Integer.parseInt(request.getParameter("idUsuario"));
         String password = request.getParameter("password");
         Conexion conn = new Conexion();
         int nivel = Integer.parseInt(request.getParameter("idNivel"));

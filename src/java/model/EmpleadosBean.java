@@ -9,20 +9,19 @@ package model;
 public class EmpleadosBean {
 //atributos tabal empleados
     private int codEmpleado;
-    private int idRol;
+    private String nombres;
+    private String apellidos;
+    private String genero;
     private String nit;
     private String dui;
-    private int idPersona;
+    private String telefono;
+    private int idRol;
     private int estadoEmpleado;
     //atributos tabla roles
     private String rol;
-    //atributos de la tabla personas
-    private String nombres;
-    private String apellidos;
-    private String telefono;
-    private String genero;
-    private int estadoPersona;
-    private int tipo;
+    
+    
+    
 
     public EmpleadosBean(int codEmpleado) {
         this.codEmpleado = codEmpleado;
@@ -58,14 +57,6 @@ public class EmpleadosBean {
 
     public void setDui(String dui) {
         this.dui = dui;
-    }
-
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
     }
 
     public int getEstadoEmpleado() {
@@ -116,23 +107,6 @@ public class EmpleadosBean {
         this.genero = genero;
     }
 
-    public int getEstadoPersona() {
-        return estadoPersona;
-    }
-
-    public void setEstadoPersona(int estadoPersona) {
-        this.estadoPersona = estadoPersona;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-    
-    
-    
+   
     
 }

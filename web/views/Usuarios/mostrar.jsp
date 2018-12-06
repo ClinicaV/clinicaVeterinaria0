@@ -34,13 +34,13 @@
                         <tbody>
                             <c:forEach items="${listar}" var="ver">
                                 <tr>
-                                    <td>${ver.codEmpleado}</td>
+                                    <td>${ver.idUsuario}</td>
                                     <td>${ver.nombres}</td>
                                     <td>${ver.apellidos}</td>
                                     <td>${ver.usuario}</td>
-                                    <td type="password">${ver.password}</td>
+                                    <td>${ver.password}</td>
                                     <td>${ver.nivel}</td>
-                                    <td><a class="btn btn-outline-warning" href="usuarios?action=buscarId&usuario=${ver.usuario}&estado=habilitado"</a>Editar</td>
+                                    <td><a class="btn btn-outline-warning" href="usuarios?action=buscarId&idUsuario=${ver.idUsuario}&estado=habilitado"</a>Editar</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

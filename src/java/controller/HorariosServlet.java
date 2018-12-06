@@ -100,7 +100,7 @@ public class HorariosServlet extends HttpServlet {
         Conexion conn = new Conexion();
         HorariosDao hdao = new HorariosDao(conn);
         List<HorariosBean> listar = hdao.buscarId(id);
-        //listado de categorias animales
+        //listado de servicios
         ServiciosDao sdao = new ServiciosDao(conn);
         List<ServiciosBean> registros = sdao.mostrar(estado);
         request.setAttribute("registros", registros);

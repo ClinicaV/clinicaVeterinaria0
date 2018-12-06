@@ -29,7 +29,7 @@ import model.RazasBean;
  */
 public class MascotaServlet extends HttpServlet {
 
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
         try {
@@ -57,7 +57,7 @@ public class MascotaServlet extends HttpServlet {
         } catch (Exception e) {
             e.getStackTrace();
         }
-        
+
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MascotaServlet extends HttpServlet {
 
         int idRaza = Integer.parseInt(request.getParameter("idraza"));
         String mascota = request.getParameter("nombre");
-        String sexo = request.getParameter("sexo");        
+        String sexo = request.getParameter("sexo");
         int idCliente = Integer.parseInt(request.getParameter("idcliente"));
         int edad = Integer.parseInt(request.getParameter("edad"));
         String tatoo = request.getParameter("tatoo");
@@ -111,7 +111,7 @@ public class MascotaServlet extends HttpServlet {
         mascotab.setIdentificacionTatoo(tatoo);
         mascotab.setAlergias(alergia);
         mascotab.setEstadoMascota(1);
-        
+
         boolean respuesta = mascotad.insertar(mascotab);
         String mensaje;
         if (respuesta) {
@@ -127,15 +127,23 @@ public class MascotaServlet extends HttpServlet {
 
     protected void buscarId(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String estado = request.getParameter("estado");
+        int id = Integer.parseInt(request.getParameter("idMascota"));
+        Conexion conn = new Conexion();
+        MascotaDao md = new MascotaDao(conn);
+        List<MascotaBean> mascota = md.buscarId(id);
+        request.setAttribute("mascota", mascota);
+        RazasDao rdao = new RazasDao(conn);
+        List<RazasBean> registros2 = rdao.mostrar();
+        request.setAttribute("registros2", registros2);
+        PersonasDao perd = new PersonasDao(conn);
+        List<PersonasBean> registros = perd.mostrar(estado);
+        request.setAttribute("registros", registros);
 
-//        int id = Integer.parseInt(request.getParameter("idNivel"));
-//        Conexion conn = new Conexion();
-//        NivelesDao ndao = new NivelesDao(conn);
-//        List<NivelesBean> registros = ndao.buscarId(id);
-//        RequestDispatcher rd;
-//        request.setAttribute("registros", registros);
-//        rd = request.getRequestDispatcher("views/Niveles/editarNiveles.jsp");
-//        rd.forward(request, response);
+        RequestDispatcher rd;
+
+        rd = request.getRequestDispatcher("views/Mascotas/editarMascotas.jsp");
+        rd.forward(request, response);
     }
 
     protected void deshabilitar(HttpServletRequest request, HttpServletResponse response)
@@ -173,36 +181,41 @@ public class MascotaServlet extends HttpServlet {
 
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String estado = "hablitado";
+        int id = Integer.parseInt(request.getParameter("id"));
+        int idRaza = Integer.parseInt(request.getParameter("idraza"));
+        String mascota = request.getParameter("nombre");
+        String sexo = request.getParameter("sexo");
+        int idCliente = Integer.parseInt(request.getParameter("idcliente"));
+        int edad = Integer.parseInt(request.getParameter("edad"));
+        String tatoo = request.getParameter("tatoo");
+        String alergia = request.getParameter("alergias");
+        Conexion conn = new Conexion();
+        MascotaDao mascotad = new MascotaDao(conn);
+        MascotaBean mascotab = new MascotaBean(id);
+        mascotab.setIdRaza(idRaza);
+        mascotab.setNombreMascota(mascota);
+        mascotab.setSexo(sexo);
+        mascotab.setIdPersona(idCliente);
+        mascotab.setEdad(edad);
+        mascotab.setIdentificacionTatoo(tatoo);
+        mascotab.setAlergias(alergia);
 
-//        int estado = Integer.parseInt(request.getParameter("estado"));
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String nivel = request.getParameter("nivel");
-//        Conexion conn = new Conexion();
-//        NivelesDao ndao = new NivelesDao(conn);
-//        NivelesBean nbean = new NivelesBean(id);
-//        nbean.setNivel(nivel);
-//        boolean respuesta = ndao.actualizar(nbean);
-//        String mensaje;
-//        if (respuesta) {
-//            mensaje = "Registro actualizado";
-//        } else {
-//            mensaje = "Error al actualizar registro";
-//        }
-//        RequestDispatcher rd;
-//        List<NivelesBean> registros;
-//
-//        if (estado == 1) {
-//            registros = ndao.mostrar("habilitado");
-//            rd = request.getRequestDispatcher("views/Niveles/mostrarNiveles.jsp");
-//        } else {
-//            registros = ndao.mostrar("deshabilitado");
-//            rd = request.getRequestDispatcher("views/Niveles/habilitarNiveles.jsp");
-//        }
-//        request.setAttribute("registros", registros);
-//        request.setAttribute("mensaje", mensaje);
-//        rd.forward(request, response);
+        boolean respuesta = mascotad.actualizar(mascotab);
+        String mensaje;
+        if (respuesta) {
+            mensaje = "Registro actualizado";
+        } else {
+            mensaje = "Error al actualizar registro";
+        }
+        List<MascotaBean> listar = mascotad.mostrar(estado);
+        RequestDispatcher rd;
+        request.setAttribute("listar", listar);
+        request.setAttribute("mensaje", mensaje);
+        rd = request.getRequestDispatcher("views/Mascotas/mostrarMascotas.jsp");
+        rd.forward(request, response);
     }
-    
+
     protected void listarRaza(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -213,7 +226,7 @@ public class MascotaServlet extends HttpServlet {
         request.setAttribute("registros2", registros);
         request.getRequestDispatcher("agregarMascota.jsp").forward(request, response);
     }
-    
+
     protected void listarPersonaRaza(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -227,6 +240,5 @@ public class MascotaServlet extends HttpServlet {
         request.setAttribute("registros", registros);
         request.getRequestDispatcher("agregarMascota.jsp").forward(request, response);
     }
-       
 
 }

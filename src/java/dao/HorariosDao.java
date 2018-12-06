@@ -68,7 +68,7 @@ public class HorariosDao {
                 hbean = new HorariosBean(rs.getInt("idHorario"));
                 hbean.setHoraInicio(rs.getString("horaInicio"));
                 hbean.setHoraFin(rs.getString("horaFin"));
-                hbean.setCatTratamiento(rs.getString("idCatTratamiento"));
+                hbean.setIdCatTratamiento(rs.getInt("idCatTratamiento"));
                 listar.add(hbean);
             }
             return listar;

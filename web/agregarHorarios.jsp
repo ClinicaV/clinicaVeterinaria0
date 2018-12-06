@@ -25,14 +25,14 @@
                         <input class="form-control" name="horaInicio" required="">
                         <label>Hora Fin</label>
                         <input class="form-control" name="horaFin" required=""><br/>
-                        <label>Categoria Animal</label>
+                        <label>Servicio</label>
                         <div class="input-group">
-                                    <input type="hidden" name="idCatTratamiento" id="idCatTratamiento">
-                                    <input type="text" class="form-control" disabled="disabled" id="catTratamiento">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-servicio" ><span class="fa fa-search"></span> Buscar</button>
-                                    </span>
-                        </div><!-- /input-group -->
+                            <input type="hidden" name="idCatTratamiento" id="idCatTratamiento">
+                            <input type="text" class="form-control" disabled="disabled" id="catTratamiento">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-servicio" ><span class="fa fa-search"></span> Buscar</button>
+                            </span>
+                        </div>
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>

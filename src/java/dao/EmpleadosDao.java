@@ -11,10 +11,7 @@ import model.EmpleadosBean;
  * @author Franklin Alexis
  * @version
  * @param
- * @comentarios<
- * 1. el sp 'sp_actualizarEmpleado' por el hecho de implicar mas de 1 tabla, requiere modificar
- *  configuracion de seguridad de mysql(Edit - preferences - SQL_Editor - safe updates)
- * >
+ * @comentarios
  */
 public class EmpleadosDao {
     Conexion conn = new Conexion();
@@ -23,7 +20,7 @@ public class EmpleadosDao {
     }
     
     public List<EmpleadosBean> mostrar(){
-        String sql = "select e.codEmpleado as Id, p.nombres as Nombres, p.apellidos as Apellidos, p.genero as Genero, p.telefono as Telefono, e.nit as NIT, e.dui as DUI, r.rol as Rol from personas p inner join empleados e on p.idPersona = e.idPersona inner join roles r on e.idRol = r.idRol where e.estadoEmpleado = 1 and p.tipo=1";
+        String sql = "select e.codEmpleado as Id, e.nombres as Nombres, e.apellidos as Apellidos, e.genero as Genero, e.telefono as Telefono, e.nit as NIT, e.dui as DUI, r.rol as Rol from empleados e inner join roles r on e.idRol = r.idRol where e.estadoEmpleado = 1";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -48,21 +45,18 @@ public class EmpleadosDao {
     }
     
     public boolean insertar(EmpleadosBean empb){
-        String sql = "CALL sp_agregarEmpleado(?,?,?,?,?,?,?,?,?,?,?,?);";
+        String sql = "insert into empleados values(?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setInt(1, empb.getIdPersona());
+            ps.setInt(1, empb.getCodEmpleado());
             ps.setString(2, empb.getNombres());
             ps.setString(3, empb.getApellidos());
-            ps.setString(4, empb.getTelefono());
-            ps.setString(5, empb.getGenero());
-            ps.setInt(6, empb.getEstadoPersona());
-            ps.setInt(7, empb.getCodEmpleado());
+            ps.setString(4, empb.getDui());
+            ps.setString(5, empb.getNit());
+            ps.setString(6, empb.getGenero());
+            ps.setString(7, empb.getTelefono());
             ps.setInt(8, empb.getIdRol());
-            ps.setString(9, empb.getNit());
-            ps.setString(10, empb.getDui());
-            ps.setInt(11, empb.getEstadoEmpleado());
-            ps.setInt(12, empb.getTipo());
+            ps.setInt(9, empb.getEstadoEmpleado());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -71,10 +65,7 @@ public class EmpleadosDao {
     }
     
     public List<EmpleadosBean> buscarId(int id){
-        String sql = "select e.codEmpleado as Id, p.nombres as Nombres, p.apellidos as Apellidos, p.genero as Genero, "
-                + "p.telefono as Telefono, e.nit as NIT, e.dui as DUI, e.idRol as Rol from personas p inner join empleados e\n" 
-                + " on p.idPersona = e.idPersona inner join roles r on e.idRol = r.idRol\n" 
-                + " where e.codEmpleado = ?";
+        String sql = "select * from empleados where codEmpleado=?;";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
@@ -82,14 +73,14 @@ public class EmpleadosDao {
             EmpleadosBean empb;
             List<EmpleadosBean> listar = new ArrayList<>();
             while (rs.next()) {                
-                empb = new EmpleadosBean(rs.getInt("Id"));
-                empb.setNombres(rs.getString("Nombres"));
-                empb.setApellidos(rs.getString("Apellidos"));
-                empb.setGenero(rs.getString("Genero"));
-                empb.setTelefono(rs.getString("Telefono"));
-                empb.setNit(rs.getString("NIT"));
-                empb.setDui(rs.getString("DUI"));
-                empb.setIdRol(rs.getInt("Rol"));
+                empb = new EmpleadosBean(rs.getInt("codEmpleado"));
+                empb.setNombres(rs.getString("nombres"));
+                empb.setApellidos(rs.getString("apellidos"));
+                empb.setDui(rs.getString("dui"));
+                empb.setNit(rs.getString("nit"));
+                empb.setGenero(rs.getString("genero"));
+                empb.setTelefono(rs.getString("telefono"));
+                empb.setIdRol(rs.getInt("idRol"));
                 listar.add(empb);
             }
             return listar;
@@ -100,17 +91,17 @@ public class EmpleadosDao {
     }
     
      public boolean actualizar(EmpleadosBean empb){
-        String sql = "CALL sp_actualizarEmpleado(?,?,?,?,?,?,?,?);";
+        String sql = "update empleados set nombres=?, apellidos=?, dui=?, nit=?, genero=?, telefono=?, idRol=? where codEmpleado=?;";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setString(1, empb.getNombres());
             ps.setString(2, empb.getApellidos());
-            ps.setString(3, empb.getTelefono());
-            ps.setString(4, empb.getGenero());
-            ps.setInt(5, empb.getCodEmpleado());
-            ps.setInt(6, empb.getIdRol());
-            ps.setString(7, empb.getNit());
-            ps.setString(8, empb.getDui());
+            ps.setString(3, empb.getDui());
+            ps.setString(4, empb.getNit());
+            ps.setString(5, empb.getGenero());
+            ps.setString(6, empb.getTelefono());
+            ps.setInt(7, empb.getIdRol());
+            ps.setInt(8, empb.getCodEmpleado());
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {

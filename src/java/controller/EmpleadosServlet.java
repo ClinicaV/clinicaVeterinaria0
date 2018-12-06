@@ -78,15 +78,12 @@ public class EmpleadosServlet extends HttpServlet {
         Conexion conn = new Conexion();
         EmpleadosDao empd = new EmpleadosDao(conn);
         EmpleadosBean empb = new EmpleadosBean(0);
-        empb.setIdPersona(0);
         empb.setNombres(nombres);
         empb.setApellidos(apellidos);
         empb.setTelefono(telefono);
         empb.setGenero(genero);
         empb.setIdRol(rol);
-        empb.setEstadoPersona(1);
         empb.setEstadoEmpleado(1);
-        empb.setTipo(1);
         empb.setNit(nit);
         empb.setDui(dui);
         boolean respuesta = empd.insertar(empb);

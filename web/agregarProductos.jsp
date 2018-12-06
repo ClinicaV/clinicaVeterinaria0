@@ -9,7 +9,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            
+
             <small>Agregar Productos</small>
         </h1>
     </section>
@@ -20,31 +20,31 @@
             <div class="box-body">
                 <div class="col-8">
                     <form action="productos?action=insertar" method="POST">
-                        
+
                         <label>Producto</label>
                         <input class="form-control col-3" name="producto" required=""><br/>
-                        
+
                         <label>Categoria Producto</label><br/>
-                         <div class="input-group">
-                                    <input type="hidden" name="idCatProducto" id="idCatProducto">
-                                    <input type="text" class="form-control" disabled="disabled" id="categoriaProducto">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-catproducto" ><span class="fa fa-search"></span> Buscar</button>
-                                    </span>
-                        </div><!-- /input-group -->
-                        
+                        <div class="input-group">
+                            <input type="hidden" name="idCatProducto" id="idCatProducto">
+                            <input type="text" class="form-control" disabled="disabled" id="categoriaProducto">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-catproducto" ><span class="fa fa-search"></span> Buscar</button>
+                            </span>
+                        </div>
+
                         <label>Unidad de medicion</label><br/>
-                         <div class="input-group">
-                                    <input type="hidden" name="idUnidadMedicion" id="idUnidadMedicion">
-                                    <input type="text" class="form-control" disabled="disabled" id="unidadMedicion">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-unidad" ><span class="fa fa-search"></span> Buscar</button>
-                                    </span>
-                        </div><!-- /input-group -->
-                        
+                        <div class="input-group">
+                            <input type="hidden" name="idUnidadMedicion" id="idUnidadMedicion">
+                            <input type="text" class="form-control" disabled="disabled" id="unidadMedicion">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-unidad" ><span class="fa fa-search"></span> Buscar</button>
+                            </span>
+                        </div>
+
                         <label>Stock</label>
                         <input class="form-control col-3" name="stock" required=""><br/>
-                        
+
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
@@ -54,13 +54,10 @@
                 </div>               
             </div>
         </div>
-<!-- /.box-body -->
-<!-- /.box -->
-</section>
-<!-- /.content -->
+    </section>
 </div>
-                    
-                    <div class="modal fade" id="modal-unidad">
+
+<div class="modal fade" id="modal-unidad">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -99,7 +96,7 @@
         </div>
     </div>
 </div>
-                    
+
 <div class="modal fade" id="modal-catproducto">
     <div class="modal-dialog">
         <div class="modal-content">

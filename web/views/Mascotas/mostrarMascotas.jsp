@@ -33,7 +33,7 @@
                         <th>Tatto</th>
                         <th>Alergias</th>
                         <th>Dueño</th>
-                        <!--th></th-->
+                        <th></th>
                         </thead>
                         <tbody>
                             <c:forEach items="${listar}" var="ver">
@@ -46,7 +46,7 @@
                                     <td>${ver.identificacionTatoo}</td>
                                     <td>${ver.alergias}</td>
                                     <td>${ver.nombres}</td>
-                                    <!--td><a class="btn btn-warning" href="#"</a>Editar</td-->
+                                    <td><a class="btn btn-warning" href="mascota?action=buscarId&idMascota=${ver.idMascota}&estado=habilitado"</a>Editar</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

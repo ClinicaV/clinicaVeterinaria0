@@ -9,6 +9,9 @@ package model;
 public class UsuariosBean {
 
     //atributos de tabla usuarios
+    private int idUsuario;
+    private String nombres;
+    private String apellidos;
     private String usuario;
     private String password;
     private int codEmpleado;
@@ -16,12 +19,11 @@ public class UsuariosBean {
     private int estadoUsuario;
     //atributo tabla niveles
     private String nivel;
-    //atributos tabla personas
-    private String nombres;
-    private String apellidos;
+    
+    
 
-    public UsuariosBean(String usuario) {
-        this.usuario = usuario;
+    public UsuariosBean(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getUsuario() {
@@ -86,6 +88,14 @@ public class UsuariosBean {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
     
