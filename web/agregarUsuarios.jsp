@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
+<title>Agregar Usuarios</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -18,23 +19,23 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <div class="col-8">
+                <div class="form-group col-md-5">
                     <form action="usuarios?action=insertar" method="POST">
                         <label>Usuario</label>
-                        <input class="form-control col-3" name="usuario" required=""><br/>
+                        <input class="form-control " name="usuario" required=""><br/>
                         
                         <label>Clave de acceso</label>
-                        <input class="form-control col-3" type="password" name="password" required=""><br/>
+                        <input class="form-control" type="password" name="password" required=""><br/>
                         
                         <label>Empleado</label><br/>
-                        <select class="custom-select col-3" name="codEmpleado" required="">
+                        <select class="form-control" name="codEmpleado" required="">
                             <c:forEach items="${registrosEmp}" var="list">
                                 <option value="${list.codEmpleado}">${list.nombres}</option>
                             </c:forEach>
                         </select><br/><br/>
                         
                         <label>Nivel</label><br/>
-                        <select class="custom-select col-3" name="idNivel" required="">
+                        <select class="form-control" name="idNivel" required="">
                             <c:forEach items="${registrosNiv}" var="list">
                                 <option value="${list.idNivel}">${list.nivel}</option>
                             </c:forEach>
@@ -43,9 +44,8 @@
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
-                    <form action="usuarios?action=mostrar" method="POST">
-                        <button class="btn btn-success col-6" name="estado" value="habilitado">Mostrar Registros</button>
-                    </form>
+                    <a class="btn btn-success" href="usuarios?action=mostrar&estado=habilitado">Mostrar Registros</a>
+                  
                 </div>               
             </div>
         </div>

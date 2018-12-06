@@ -6,10 +6,12 @@ import dao.NivelesDao;
 import dao.UsuariosDao;
 import java.io.IOException;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.EmpleadosBean;
 import model.UsuariosBean;
 import model.NivelesBean;
@@ -20,9 +22,11 @@ import model.NivelesBean;
  */
 public class UsuariosServlet extends HttpServlet {
 
+    HttpSession session;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String action = request.getParameter("action");
+        String action = request.getParameter("action");
         try {
             switch (action) {
                 case "insertar":
@@ -39,6 +43,12 @@ public class UsuariosServlet extends HttpServlet {
                     break;
                 case "listarFK":
                     listarFK(request, response);
+                    break;
+                case "login":
+                    login(request, response);
+                    break;
+                case "logout":
+                    logout(request, response);
                     break;
             }
         } catch (Exception e) {
@@ -58,7 +68,7 @@ public class UsuariosServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-        protected void mostrar(HttpServletRequest request, HttpServletResponse response)
+    protected void mostrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String estado = request.getParameter("estado");
         Conexion conn = new Conexion();
@@ -109,7 +119,7 @@ public class UsuariosServlet extends HttpServlet {
         Conexion conn = new Conexion();
         UsuariosDao udao = new UsuariosDao(conn);
         List<UsuariosBean> listar = udao.buscarId(usu);
-        
+
         EmpleadosDao edao = new EmpleadosDao(conn);
         NivelesDao ndao = new NivelesDao(conn);
         List<EmpleadosBean> registrosEmp = edao.mostrar();
@@ -127,13 +137,13 @@ public class UsuariosServlet extends HttpServlet {
         Conexion conn = new Conexion();
         int nivel = Integer.parseInt(request.getParameter("idNivel"));
         int empleado = Integer.parseInt(request.getParameter("codEmpleado"));
-        
+
         UsuariosDao udao = new UsuariosDao(conn);
         UsuariosBean ubean = new UsuariosBean(usu);
         ubean.setPassword(password);
         ubean.setIdNivel(nivel);
         ubean.setCodEmpleado(empleado);
-        
+
         boolean respuesta = udao.actualizar(ubean);
         String mensaje;
         if (respuesta) {
@@ -159,6 +169,45 @@ public class UsuariosServlet extends HttpServlet {
         request.setAttribute("registrosEmp", registrosEmp);
         request.setAttribute("registrosNiv", registrosNiv);
         request.getRequestDispatcher("agregarUsuarios.jsp").forward(request, response);
+    }
+
+    protected void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String usu = request.getParameter("usu");
+        String pass = request.getParameter("pass");
+        Conexion conn = new Conexion();
+        UsuariosDao udao = new UsuariosDao(conn);
+        UsuariosBean ubean = new UsuariosBean(0);
+        ubean = udao.login(usu, pass);
+        String msg;
+        RequestDispatcher rd;
+        session = request.getSession();
+        if (ubean.getIdUsuario() > 0) {
+
+            rd = request.getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+
+        } else {
+            msg = "Error de credenciales";
+            request.setAttribute("msg", msg);
+
+            rd = request.getRequestDispatcher("/login.jsp");
+            rd.forward(request, response);
+        }
+        request.setAttribute("usu", usu);
+        rd = request.getRequestDispatcher("header.jsp");
+        rd.forward(request, response);
+    }
+
+    protected void logout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        session = request.getSession();
+
+        if (session != null) {
+            RequestDispatcher rd;
+            rd = request.getRequestDispatcher("/login.jsp");
+            rd.forward(request, response);
+        }
     }
 
 }

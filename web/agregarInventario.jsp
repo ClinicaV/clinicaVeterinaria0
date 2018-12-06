@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
+<title>Agregar Inventario</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -18,7 +19,7 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <div class="col-8">
+                <div class="form-group col-md-5">
                     <form action="inventario?action=insertar" method="POST">
 
                         <label>Producto</label><br/>
@@ -31,16 +32,15 @@
                         </div>
 
                         <label>Cantidad</label>
-                        <input class="form-control col-3" name="cantidad" required="">
+                        <input class="form-control " name="cantidad" required="">
                         <label>Costo Unitario</label>
-                        <input class="form-control col-3" name="costoUnitario" required=""><br/>
+                        <input class="form-control " name="costoUnitario" required=""><br/>
 
                         <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
-                    <form action="inventario?action=mostrar" method="POST">
-                        <button class="btn btn-success col-6" name="estado" value="habilitado">Mostrar Registros</button>
-                    </form>
+                    <a class="btn btn-success" href="inventario?action=mostrar&estado=habilitado">Mostrar Registros</a>
+                    
                 </div>               
             </div>
         </div>

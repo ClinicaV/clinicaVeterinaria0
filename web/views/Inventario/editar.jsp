@@ -6,11 +6,12 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Editar Inventario</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
 
-            <small>Editar</small>
+            <small>Editar Inventario</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -60,9 +61,9 @@
 
                             
                         </c:forEach>
-                        <button class="btn btn-warning col-3">Actualizar</button>
+                        <button class="btn btn-warning ">Actualizar</button>
                     </form>
-                    <br/> <button class="btn btn-danger col-3" onclick="history.back()" >Cancelar</button>
+                    <br/> <button class="btn btn-danger " onclick="history.back()" >Cancelar</button>
                 </div>
             </div>
         </div>

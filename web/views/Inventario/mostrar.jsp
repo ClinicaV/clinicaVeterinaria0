@@ -6,6 +6,7 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Registros Inventario</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -20,7 +21,7 @@
             <div class="box-body">
                     <br/>
                     <a class="btn btn-primary" href="inventario?action=listarProductos&estado=habilitado">Nuevo registro</a>
-                    <br>
+                    <br/> <br/>
                     <table id="cat1" class="table table-striped table-bordered">
                         <thead class="alert-info">
                         <th>ID</th>
@@ -38,7 +39,7 @@
                                     <td>${ver.cantidad}</td>
                                     <td>${ver.costoUnitario}</td>
                                     <td>${ver.costoTotal}</td>
-                                    <td><a class="btn btn-outline-warning" href="inventario?action=buscarId&id=${ver.idProducto}&estado=habilitado"</a>Editar</td>
+                                    <td><a class="btn btn-warning" href="inventario?action=buscarId&id=${ver.idProducto}&estado=habilitado"</a>Editar</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

@@ -6,11 +6,12 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Editar Producto</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
 
-            <small>Editar</small>
+            <small>Editar Producto</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -26,7 +27,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>ID:</label>
-                                        <input class="form-control col-3" name="id" readonly="" value="${list.idProducto}">
+                                        <input class="form-control" name="id" readonly="" value="${list.idProducto}">
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +37,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Producto</label>
-                                        <input class="form-control col-3" name="producto" required="" value="${list.producto}">
+                                        <input class="form-control" name="producto" required="" value="${list.producto}">
                                     </div>
                                 </div>
                             </div>
@@ -81,9 +82,9 @@
                             </div>                                    
 
                         </c:forEach>
-                        <button class="btn btn-warning col-3">Actualizar</button>
+                        <button class="btn btn-warning ">Actualizar</button>
                     </form>
-                    <br/> <button class="btn btn-danger col-3" onclick="history.back()" >Cancelar</button>
+                    <br/> <button class="btn btn-danger" onclick="history.back()" >Cancelar</button>
                 </div>
             </div>
         </div>

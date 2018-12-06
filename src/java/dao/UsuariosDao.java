@@ -14,13 +14,15 @@ import model.UsuariosBean;
  * @comentarios
  */
 public class UsuariosDao {
+
     Conexion conn;
-    public UsuariosDao(Conexion con){
+
+    public UsuariosDao(Conexion con) {
         conn = con;
     }
-    
-public boolean insertar(UsuariosBean ubean) {
-        String sql = "insert into usuarios values (?,?,?,?,?,?)";
+
+    public boolean insertar(UsuariosBean ubean) {
+        String sql = "insert into usuarios values (?,?,md5(?),?,?,?)";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, ubean.getIdUsuario());
@@ -36,88 +38,88 @@ public boolean insertar(UsuariosBean ubean) {
         }
     }
 
-public List<UsuariosBean> mostrar(String estado) {
-    String sql;
-    if (estado.equals("habilitado")) {
-        sql = "select u.idUsuario, u.codEmpleado, u.usuario, e.nombres as Nombres, e.apellidos as Apellidos, u.password as Clave_Acceso, n.nivel as Nivel from empleados e inner join usuarios u on e.codEmpleado=u.codEmpleado inner join niveles n on n.idNivel=u.idNivel where estadoUsuario=1;";
-        try {
-            PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            List<UsuariosBean> registros = new ArrayList<>();
-            UsuariosBean ubean;
-            while (rs.next()) {
-                ubean = new UsuariosBean(rs.getInt("idUsuario"));
-                ubean.setCodEmpleado(rs.getInt("codEmpleado"));
-                ubean.setUsuario(rs.getString("usuario"));
-                ubean.setNombres(rs.getString("Nombres"));
-                ubean.setApellidos(rs.getString("Apellidos"));
-                ubean.setPassword(rs.getString("Clave_Acceso"));
-                ubean.setNivel(rs.getString("Nivel"));
-                registros.add(ubean);
+    public List<UsuariosBean> mostrar(String estado) {
+        String sql;
+        if (estado.equals("habilitado")) {
+            sql = "select u.idUsuario, u.codEmpleado, u.usuario, e.nombres as Nombres, e.apellidos as Apellidos, u.password as Clave_Acceso, n.nivel as Nivel from empleados e inner join usuarios u on e.codEmpleado=u.codEmpleado inner join niveles n on n.idNivel=u.idNivel where estadoUsuario=1;";
+            try {
+                PreparedStatement ps = conn.conectar().prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                List<UsuariosBean> registros = new ArrayList<>();
+                UsuariosBean ubean;
+                while (rs.next()) {
+                    ubean = new UsuariosBean(rs.getInt("idUsuario"));
+                    ubean.setCodEmpleado(rs.getInt("codEmpleado"));
+                    ubean.setUsuario(rs.getString("usuario"));
+                    ubean.setNombres(rs.getString("Nombres"));
+                    ubean.setApellidos(rs.getString("Apellidos"));
+                    ubean.setPassword(rs.getString("Clave_Acceso"));
+                    ubean.setNivel(rs.getString("Nivel"));
+                    registros.add(ubean);
+                }
+                return registros;
+            } catch (SQLException e) {
+                return null;
             }
-            return registros;
-        } catch (SQLException e) {
-            return null;
-        }
 
-    } else {
-        sql = "select u.idUsuario, u.codEmpleado, u.usuario, e.nombres as Nombres, e.apellidos as Apellidos, u.password as Clave_Acceso, n.nivel as Nivel from empleados e  inner join usuarios u on e.codEmpleado=u.codEmpleado inner join niveles n on n.idNivel=u.idNivel where estadoUsuario=0;";
-        try {
-            PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            List<UsuariosBean> registros = new ArrayList<>();
-            UsuariosBean ubean;
-            while (rs.next()) {
-                ubean = new UsuariosBean(rs.getInt("idUsuario"));
-                ubean.setCodEmpleado(rs.getInt("codEmpleado"));
-                ubean.setUsuario(rs.getString("usuario"));
-                ubean.setNombres(rs.getString("Nombres"));
-                ubean.setApellidos(rs.getString("Apellidos"));
-                ubean.setPassword(rs.getString("Clave_Acceso"));
-                ubean.setNivel(rs.getString("Nivel"));
-                registros.add(ubean);
+        } else {
+            sql = "select u.idUsuario, u.codEmpleado, u.usuario, e.nombres as Nombres, e.apellidos as Apellidos, u.password as Clave_Acceso, n.nivel as Nivel from empleados e  inner join usuarios u on e.codEmpleado=u.codEmpleado inner join niveles n on n.idNivel=u.idNivel where estadoUsuario=0;";
+            try {
+                PreparedStatement ps = conn.conectar().prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                List<UsuariosBean> registros = new ArrayList<>();
+                UsuariosBean ubean;
+                while (rs.next()) {
+                    ubean = new UsuariosBean(rs.getInt("idUsuario"));
+                    ubean.setCodEmpleado(rs.getInt("codEmpleado"));
+                    ubean.setUsuario(rs.getString("usuario"));
+                    ubean.setNombres(rs.getString("Nombres"));
+                    ubean.setApellidos(rs.getString("Apellidos"));
+                    ubean.setPassword(rs.getString("Clave_Acceso"));
+                    ubean.setNivel(rs.getString("Nivel"));
+                    registros.add(ubean);
+                }
+                return registros;
+            } catch (SQLException e) {
+                return null;
             }
-            return registros;
-        } catch (SQLException e) {
-            return null;
         }
     }
-}
 
-public boolean deshabilitar(String usu, String estado) {
-    String sql;
-    if (estado.equals("habilitar")) {
-        sql = "update usuarios set estadoUsuario=1 where usuario=?";
-        try {
+    public boolean deshabilitar(String usu, String estado) {
+        String sql;
+        if (estado.equals("habilitar")) {
+            sql = "update usuarios set estadoUsuario=1 where usuario=?";
+            try {
 
-            PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setString(1, usu);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
-    } else {
-        sql = "update usuarios set estadoUsuario=0 where usuario=?";
-        try {
+                PreparedStatement ps = conn.conectar().prepareStatement(sql);
+                ps.setString(1, usu);
+                ps.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                return false;
+            }
+        } else {
+            sql = "update usuarios set estadoUsuario=0 where usuario=?";
+            try {
 
-            PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setString(1, usu);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            return false;
+                PreparedStatement ps = conn.conectar().prepareStatement(sql);
+                ps.setString(1, usu);
+                ps.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                return false;
+            }
         }
     }
-}
 
-public List<UsuariosBean> buscarId(int id) {
-    String sql = "select u.idUsuario, u.codEmplado, e.nombres, e.apellidos, u.usuario, u.password, u.idNivel from empleados e  inner join usuarios u on e.codEmpleado=u.codEmpleado where idUsuario=?;";
-    try {
-        PreparedStatement ps = conn.conectar().prepareStatement(sql);
-        ps.setInt(1, id);
-        ResultSet rs = ps.executeQuery();
-        List<UsuariosBean> registros = new ArrayList<>();
+    public List<UsuariosBean> buscarId(int id) {
+        String sql = "select u.idUsuario, u.codEmplado, e.nombres, e.apellidos, u.usuario, u.password, u.idNivel from empleados e  inner join usuarios u on e.codEmpleado=u.codEmpleado where idUsuario=?;";
+        try {
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<UsuariosBean> registros = new ArrayList<>();
             UsuariosBean ubean;
             while (rs.next()) {
                 ubean = new UsuariosBean(rs.getInt("idUsuario"));
@@ -130,15 +132,14 @@ public List<UsuariosBean> buscarId(int id) {
                 registros.add(ubean);
             }
             return registros;
+        } catch (SQLException e) {
+            return null;
         }
-        catch (SQLException e) {
-        return null;
     }
-    } 
 
-public boolean actualizar(UsuariosBean ubean){
+    public boolean actualizar(UsuariosBean ubean) {
         String sql = "update usuarios set usuario=?, password=?, idNivel=? where idUsuario=?";
-        try{
+        try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setString(1, ubean.getUsuario());
             ps.setString(2, ubean.getPassword());
@@ -146,10 +147,30 @@ public boolean actualizar(UsuariosBean ubean){
             ps.setInt(4, ubean.getIdUsuario());
             ps.executeUpdate();
             return true;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return false;
         }
     }
-  
+
+    public UsuariosBean login(String usu, String pass) {
+        String sql = "select * from usuarios where usuario=? and password=md5(?)";
+        try {
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setString(1, usu);
+            ps.setString(2, pass);
+            ResultSet rs = ps.executeQuery();
+            UsuariosBean ubean = new UsuariosBean(0);
+            while (rs.next()) {
+                ubean.setIdUsuario(rs.getInt("idUsuario"));
+                ubean.setUsuario(rs.getString("usuario"));
+                ubean.setPassword(rs.getString("password"));
+
+            }
+            return ubean;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 
 }

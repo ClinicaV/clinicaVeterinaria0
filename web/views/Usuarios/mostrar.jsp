@@ -6,6 +6,7 @@
 
 <jsp:include page="../../header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<title>Registros Usuarios</title>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -20,7 +21,7 @@
             <div class="box-body">
                     <br/>
                     <a class="btn btn-primary" href="usuarios?action=listarFK&estado=habilitado">Nuevo registro</a>
-                    <br>
+                    <br/> <br/>
                     <table id="cat1" class="table table-striped table-bordered">
                         <thead class="alert-info">
                         <th>ID</th>
@@ -29,7 +30,7 @@
                         <th>Usuario</th>
                         <th>Password</th>
                         <th>Nivel</th>
-                        <th></th>
+                        <!--th></th-->
                         </thead>
                         <tbody>
                             <c:forEach items="${listar}" var="ver">
@@ -40,7 +41,7 @@
                                     <td>${ver.usuario}</td>
                                     <td>${ver.password}</td>
                                     <td>${ver.nivel}</td>
-                                    <td><a class="btn btn-outline-warning" href="usuarios?action=buscarId&idUsuario=${ver.idUsuario}&estado=habilitado"</a>Editar</td>
+                                    <!--td><a class="btn btn-warning" href="usuarios?action=buscarId&idUsuario=${ver.idUsuario}&estado=habilitado"</a>Editar</td-->
                                 </tr>
                             </c:forEach>
                         </tbody>

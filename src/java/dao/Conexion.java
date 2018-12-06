@@ -7,7 +7,7 @@ public class Conexion {
 
     static String bd = "clinicaVeterinaria";
     static String user = "root";
-    static String pass = "";
+    static String pass = "root";
     static String url = "jdbc:mysql://localhost/" + bd;
     Connection conn = null;
 

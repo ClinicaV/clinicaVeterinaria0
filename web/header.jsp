@@ -155,7 +155,7 @@
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
                                 <li><a href="usuarios?action=mostrar&estado=habilitado"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                             </ul>
-                        </li>usuarios
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

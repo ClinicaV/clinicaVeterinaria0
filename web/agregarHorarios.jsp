@@ -33,7 +33,7 @@
                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-servicio" ><span class="fa fa-search"></span> Buscar</button>
                             </span>
                         </div>
-                        <button class="btn btn-primary">Agregar</button>
+                       <br/> <button class="btn btn-primary">Agregar</button>
                     </form>
                     ${mensaje}<br/><br/>
                     <a class="btn btn-success" href="horarios?action=mostrar&estado=habilitado">Mostrar Registros</a>
